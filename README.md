@@ -50,4 +50,7 @@ The BeyondChats Node Frontend Assignment involves building a **mobile-responsive
 
 https://beyondchatss.netlify.app/
 
+## Demo Video
+
+https://www.loom.com/share/f1d4e8f051894c49baf5fa4246dbbb9c?sid=818ff416-8f8c-4e71-915c-44cf3b750f7c
 
