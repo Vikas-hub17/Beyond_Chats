@@ -1,5 +1,9 @@
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import styled, { keyframes } from 'styled-components';
+import { FiCheckCircle, FiLoader } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { theme } from '../../styles/theme';
 
 const ModalBackdrop = styled(motion.div)`
   position: fixed;
@@ -35,7 +39,54 @@ const CodeInput = styled.input`
   }
 `;
 
+// Add success message animation
+const slideIn = keyframes`
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const SuccessMessage = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: ${theme.colors.success};
+  color: white;
+  padding: ${theme.spacing.md} ${theme.spacing.lg};
+  border-radius: ${theme.borderRadius.md};
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.sm};
+  box-shadow: ${theme.shadow.lg};
+  animation: ${slideIn} 0.3s ease-out;
+  z-index: 1000;
+`;
+
 const VerificationModal = ({ onComplete }) => {
+  const [verifying, setVerifying] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const handleVerify = async () => {
+    setVerifying(true);
+    // Simulate verification delay
+    setTimeout(() => {
+      setVerifying(false);
+      setShowSuccess(true);
+      
+      // Redirect after showing success message
+      setTimeout(() => {
+        onComplete();
+      }, 2000);
+    }, 1500);
+  };
+
+
   return (
     <ModalBackdrop
       initial={{ opacity: 0 }}
@@ -51,7 +102,16 @@ const VerificationModal = ({ onComplete }) => {
             <CodeInput key={i} type="text" maxLength="1" />
           ))}
         </div>
-        <button onClick={onComplete}>Verify</button>
+        <button onClick={handleVerify} disabled={verifying}>
+        {verifying ? <FiLoader className="spin" /> : 'Verify'}
+      </button>
+
+      {showSuccess && (
+        <SuccessMessage>
+          <FiCheckCircle size={24} />
+          Successfully logged in!
+        </SuccessMessage>
+      )}
       </ModalContent>
     </ModalBackdrop>
   );
