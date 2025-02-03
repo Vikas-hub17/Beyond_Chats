@@ -21,15 +21,9 @@ The BeyondChats Node Frontend Assignment involves building a **mobile-responsive
 - **Integrate on your website** button (integration instructions + email option)
 - **Test Integration** button (Success message with Confetti UI + Admin panel access)
 
-### 4️⃣ Unit Testing
-- Unit tests for **1 Component** and **1 Service**
-- 100% **Code Coverage** using Angular testing libraries
-- **Coverage Report** added in `README`
-
 ## 🛠 Tech Stack
-- **Frontend:** Angular 14+
+- **Frontend:** React
 - **Styling:** Styled-components
-- **UI Libraries:** Angular Material, PrimeNG
 
 ## 📁 Project Structure
 ```plaintext
@@ -37,11 +31,8 @@ The BeyondChats Node Frontend Assignment involves building a **mobile-responsive
 │── /src
 │   ├── /app
 │   │   ├── /components  # UI components
-│   │   ├── /services    # API & business logic
 │   │   ├── /pages       # Page views
-│   │   ├── /testing     # Unit tests
-│── /assets             # Static files
-│── angular.json        # Angular configuration
+│── /assets             # Static file    
 │── package.json        # Dependencies & scripts
 │── README.md           # Documentation
 ```
